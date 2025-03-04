@@ -5,3 +5,14 @@
 // відобразити у тезі #userCity
 // Запустити програму потрібно за допомогою Live Server
 // Перевірити правильність програми - команда node tests/task2.test.js
+
+const getUserButton = document.getElementById("getUserButton");
+const usersCity = document.getElementById("userCity");
+getUserButton.addEventListener("click", async () => {
+    const inputUser = document.getElementById("userNameInput").value;
+    const usersRequest = await  fetch("https://jsonplaceholder.typicode.com/users");
+    const response = await usersRequest.json();
+    const res = response.find((user) => user.name === inputUser);
+    usersCity.innerText = res.address.city;
+}
+)
